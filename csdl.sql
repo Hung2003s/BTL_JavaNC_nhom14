@@ -1,0 +1,37 @@
+CREATE DATABASE spring_shopping;
+USE spring_shopping;
+CREATE TABLE Accounts (
+    User_Name VARCHAR(20) NOT NULL PRIMARY KEY,
+    Encryted_Password VARCHAR(128) NOT NULL,
+    Active CHAR(1) NOT NULL,
+    User_Role VARCHAR(20) NOT NULL
+);
+CREATE TABLE Order_Details (
+    ID VARCHAR(50) NOT NULL PRIMARY KEY,
+    ORDER_ID VARCHAR(50) NOT NULL,
+    PRODUCT_ID VARCHAR(20) NOT NULL,
+    Quanity INT NOT NULL,
+    Price DOUBLE NOT NULL,
+    Amount DOUBLE NOT NULL,
+    FOREIGN KEY (ORDER_ID) REFERENCES Orders(ID),
+    FOREIGN KEY (PRODUCT_ID) REFERENCES Products(Code)
+);
+CREATE TABLE Products (
+    Code VARCHAR(20) NOT NULL PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Price DOUBLE NOT NULL,
+    Image longblob,
+    Create_Date TIMESTAMP NOT NULL
+);
+CREATE TABLE Orders (
+    ID VARCHAR(50) NOT NULL PRIMARY KEY,
+    Order_Date DATETIME NOT NULL,
+    Order_Num INT NOT NULL,
+    Amount DOUBLE NOT NULL,
+    Customer_Name VARCHAR(255) NOT NULL,
+    Customer_Address VARCHAR(255) NOT NULL,
+    Customer_Email VARCHAR(128) NOT NULL,
+    Customer_Phone VARCHAR(128) NOT NULL,
+    UNIQUE (Order_Num)
+);
+SHOW TABLES;products
